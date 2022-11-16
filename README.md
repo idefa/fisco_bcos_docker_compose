@@ -1,5 +1,12 @@
 # Docker-Compose 部署fisco和webase
+二次封装build_chain脚本，针对无外网条件下建链,自动生成Docker-compose编排脚本文件。
 
+支持以下特性:
+* 修改配置文件动态新增服务器和节点，平滑扩容
+* 修改配置文件动态新增分组，无需通过console控制台
+* 动态生成编排的Docker-compose文件
+
+![avatar](tree.png)
 ## 1.搭建区块链网络
 ```bash
 docker network create -d bridge --subnet=172.25.0.0/16 --gateway=172.25.0.1 fisco_network
@@ -10,7 +17,7 @@ docker network create -d bridge --subnet=172.25.0.0/16 --gateway=172.25.0.1 fisc
 [fisco]
 #国密
 gm=0
-#单机调试
+#单机模拟多台机器
 debug=1
 output=./nodes
 nodes=server1 server2 server3
